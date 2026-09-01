@@ -15,54 +15,55 @@ import {
   GraduationCap,
   Bot,
 } from "lucide-react";
+import { TiltCard } from "@/components/TiltCard";
 
 const skillCategories = {
   web: {
     label: "Full-Stack Web",
     icon: Server,
     skills: [
-      { name: "React.js & State Management", level: "Advanced", pct: 92 },
-      { name: "Node.js & Express.js", level: "Advanced", pct: 90 },
-      { name: "RESTful APIs & MVC Architecture", level: "Advanced", pct: 94 },
-      { name: "Tailwind CSS & Bootstrap 5", level: "Advanced", pct: 92 },
-      { name: "Mapbox GL JS & Cloudinary API", level: "Advanced", pct: 88 },
-      { name: "Passport.js Auth Pipelines", level: "Proficient", pct: 85 },
+      { name: "React.js & Component Architecture", level: "Advanced", pct: 90 },
+      { name: "RESTful APIs & MVC Architecture", level: "Advanced", pct: 92 },
+      { name: "Node.js & Express.js", level: "Advanced", pct: 88 },
+      { name: "Tailwind CSS & Modern UI", level: "Advanced", pct: 90 },
+      { name: "Mapbox GL JS & Cloudinary Media", level: "Proficient", pct: 78 },
+      { name: "Passport.js RBAC & Auth Pipelines", level: "Proficient", pct: 75 },
     ],
   },
   ai: {
     label: "AI, ML & Reinforcement Learning",
     icon: Bot,
     skills: [
-      { name: "Multi-Agent RL Environments", level: "Advanced", pct: 90 },
-      { name: "Hugging Face TRL & Transformers", level: "Advanced", pct: 88 },
-      { name: "Proximal Policy Optimization (PPO)", level: "Proficient", pct: 85 },
-      { name: "Weights & Biases (WandB)", level: "Advanced", pct: 88 },
-      { name: "Gradio Web UI Integration", level: "Advanced", pct: 90 },
-      { name: "LLM-based Agentic Workflows", level: "Advanced", pct: 86 },
+      { name: "Multi-Agent RL Simulation", level: "Advanced", pct: 88 },
+      { name: "Hugging Face TRL & Transformers", level: "Advanced", pct: 85 },
+      { name: "Gradio Interactive Web UI", level: "Proficient", pct: 82 },
+      { name: "Weights & Biases (WandB) Tracking", level: "Proficient", pct: 80 },
+      { name: "Proximal Policy Optimization (PPO)", level: "Proficient", pct: 78 },
+      { name: "LLM Agentic Tool-Use Workflows", level: "Proficient", pct: 74 },
     ],
   },
   languages: {
     label: "Programming Languages",
     icon: Code2,
     skills: [
-      { name: "C++ (Data Structures & Algorithms)", level: "Advanced", pct: 90 },
-      { name: "JavaScript (ES6+)", level: "Advanced", pct: 92 },
-      { name: "TypeScript", level: "Proficient", pct: 85 },
-      { name: "Python", level: "Advanced", pct: 88 },
-      { name: "SQL (Queries & Schema Design)", level: "Advanced", pct: 86 },
-      { name: "HTML5 & CSS3 / LaTeX", level: "Advanced", pct: 92 },
+      { name: "C++ (Data Structures & Algorithms)", level: "Advanced", pct: 92 },
+      { name: "JavaScript (ES6+ / Modern Web)", level: "Advanced", pct: 90 },
+      { name: "Python (ML, RL & Scripting)", level: "Advanced", pct: 88 },
+      { name: "TypeScript", level: "Proficient", pct: 78 },
+      { name: "SQL (Relational Design & Queries)", level: "Proficient", pct: 76 },
+      { name: "HTML5 & CSS3 / LaTeX", level: "Advanced", pct: 90 },
     ],
   },
   cloud: {
     label: "DevOps, Databases & Tools",
     icon: Cloud,
     skills: [
-      { name: "MongoDB Atlas & MySQL", level: "Advanced", pct: 90 },
-      { name: "Docker & Containerization", level: "Advanced", pct: 88 },
-      { name: "Git, GitHub & CI/CD Pipelines", level: "Advanced", pct: 92 },
-      { name: "AWS & Render Cloud Deployments", level: "Proficient", pct: 84 },
-      { name: "Postman & REST API Testing", level: "Advanced", pct: 90 },
-      { name: "Linux / Ubuntu Environment", level: "Advanced", pct: 89 },
+      { name: "Git, GitHub & Collaborative CI/CD", level: "Advanced", pct: 90 },
+      { name: "MongoDB Atlas & MySQL", level: "Advanced", pct: 88 },
+      { name: "Linux / Ubuntu Environment", level: "Advanced", pct: 85 },
+      { name: "Postman & REST API Verification", level: "Proficient", pct: 82 },
+      { name: "Docker & Containerization", level: "Proficient", pct: 80 },
+      { name: "AWS & Render Cloud Deployments", level: "Familiar", pct: 68 },
     ],
   },
 };
@@ -107,9 +108,9 @@ export const About = () => {
             About the Developer
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-100 animate-fade-in animation-delay-100">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-100 animate-fade-in animation-delay-100 font-heading">
             Driven by curiosity, fueled by{" "}
-            <span className="gradient-text glow-text font-serif italic font-normal">
+            <span className="gradient-text glow-text italic font-light">
               algorithms &amp; innovation.
             </span>
           </h2>
@@ -122,38 +123,40 @@ export const About = () => {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           {/* Bento Item 1: Main Story (7 cols) */}
-          <div className="md:col-span-7 glass-card rounded-3xl p-8 space-y-6 flex flex-col justify-between animate-fade-in">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400">
-                  <BookOpen className="w-5 h-5" />
+          <div className="md:col-span-7">
+            <TiltCard maxTilt={4} scale={1.01} className="h-full glass-card rounded-3xl p-8 space-y-6 flex flex-col justify-between animate-fade-in">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400">
+                    <BookOpen className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-100">
+                    Background &amp; Technical Focus
+                  </h3>
                 </div>
-                <h3 className="text-xl font-bold text-slate-100">
-                  Background &amp; Technical Focus
-                </h3>
+
+                <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
+                  I am a B.Tech Computer Science and Engineering student at the <strong className="text-slate-100 font-semibold">Indian Institute of Information Technology (IIIT) Dharwad</strong> (Graduating May 2028, CGPA: 7.47 / 10.0). I specialize in designing scalable full-stack platforms and intelligent multi-agent reinforcement learning architectures.
+                </p>
+
+                <p className="text-slate-400 leading-relaxed text-sm">
+                  Beyond academics, I serve as a Core Web Developer across two premier technical clubs: <strong className="text-teal-300">Google Developer Groups (GDG) on Campus</strong> and the <strong className="text-sky-300">IEEE Student Branch</strong> at IIIT Dharwad. I collaborate in Agile-driven teams building hackathon portals, event registration systems, and digital platforms.
+                </p>
               </div>
 
-              <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-                I am a B.Tech Computer Science and Engineering student at the <strong className="text-slate-100 font-semibold">Indian Institute of Information Technology (IIIT) Dharwad</strong> (Graduating May 2028, CGPA: 7.47 / 10.0). I specialize in designing scalable full-stack platforms and intelligent multi-agent reinforcement learning architectures.
-              </p>
-
-              <p className="text-slate-400 leading-relaxed text-sm">
-                Beyond academics, I serve as a Core Web Developer across two premier technical clubs: <strong className="text-teal-300">Google Developer Groups (GDG) on Campus</strong> and the <strong className="text-sky-300">IEEE Student Branch</strong> at IIIT Dharwad. I collaborate in Agile-driven teams building hackathon portals, event registration systems, and digital platforms.
-              </p>
-            </div>
-
-            {/* Quote banner */}
-            <div className="glass rounded-2xl p-5 border border-teal-500/25 bg-teal-950/20">
-              <p className="text-sm italic text-teal-200 font-medium">
-                “Building systems that combine the speed of modern web architectures with the intelligence of multi-agent reinforcement learning.”
-              </p>
-            </div>
+              {/* Quote banner */}
+              <div className="glass rounded-2xl p-5 border border-teal-500/25 bg-teal-950/20">
+                <p className="text-sm italic text-teal-200 font-medium">
+                  “Building systems that combine the speed of modern web architectures with the intelligence of multi-agent reinforcement learning.”
+                </p>
+              </div>
+            </TiltCard>
           </div>
 
           {/* Bento Item 2: Quick Metrics & Live Focus (5 cols) */}
           <div className="md:col-span-5 flex flex-col gap-6">
             {/* Exploration Radar */}
-            <div className="glass-card rounded-3xl p-6 flex-1 space-y-4 animate-fade-in animation-delay-100">
+            <TiltCard maxTilt={4} scale={1.01} className="glass-card rounded-3xl p-6 flex-1 space-y-4 animate-fade-in animation-delay-100">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <Sparkles className="w-4 h-4 text-amber-400" />
@@ -182,38 +185,40 @@ export const About = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </TiltCard>
 
             {/* Stats Row */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="glass rounded-3xl p-5 border border-slate-800 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center text-teal-400 font-bold">
+              <TiltCard maxTilt={5} scale={1.02} className="glass rounded-3xl p-5 border border-slate-800 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center text-teal-400 font-bold flex-shrink-0">
                   <Trophy className="w-6 h-6" />
                 </div>
                 <div>
                   <div className="text-2xl font-extrabold text-slate-100">Top 800</div>
                   <div className="text-xs text-slate-400">Meta PyTorch Hackathon</div>
                 </div>
-              </div>
+              </TiltCard>
 
-              <div className="glass rounded-3xl p-5 border border-slate-800 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-sky-500/10 flex items-center justify-center text-sky-400 font-bold">
+              <TiltCard maxTilt={5} scale={1.02} className="glass rounded-3xl p-5 border border-slate-800 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-sky-500/10 flex items-center justify-center text-sky-400 font-bold flex-shrink-0">
                   <GraduationCap className="w-6 h-6" />
                 </div>
                 <div>
                   <div className="text-2xl font-extrabold text-slate-100">7.47</div>
                   <div className="text-xs text-slate-400">CGPA / 10.0 (IIIT DWD)</div>
                 </div>
-              </div>
+              </TiltCard>
             </div>
           </div>
 
           {/* Bento Item 3: Core Principles (12 cols, 4 subcards) */}
           <div className="md:col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
             {principles.map((item, idx) => (
-              <div
+              <TiltCard
                 key={idx}
-                className="glass-card rounded-2xl p-6 space-y-3 transition-all duration-300 hover:-translate-y-1"
+                maxTilt={6}
+                scale={1.02}
+                className="glass-card rounded-2xl p-6 space-y-3 transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400">
                   <item.icon className="w-5 h-5" />
@@ -222,7 +227,7 @@ export const About = () => {
                 <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
                   {item.desc}
                 </p>
-              </div>
+              </TiltCard>
             ))}
           </div>
 

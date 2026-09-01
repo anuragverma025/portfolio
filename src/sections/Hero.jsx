@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import {
   ArrowRight,
   ChevronDown,
@@ -13,7 +13,10 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/Button";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
+import { TiltCard } from "@/components/TiltCard";
 import { GithubIcon, LinkedinIcon, HuggingFaceIcon } from "@/components/Icons";
+
+const HeroCanvas = lazy(() => import("@/components/HeroCanvas"));
 
 const roles = [
   "Full-Stack Web Developer",
@@ -57,7 +60,9 @@ export const Hero = () => {
   }, []);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("24bcs019@iiitdwd.ac.in");
+    const user = "24bcs019";
+    const domain = "iiitdwd.ac.in";
+    navigator.clipboard.writeText(`${user}@${domain}`);
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2500);
   };
@@ -65,12 +70,19 @@ export const Hero = () => {
   return (
     <section className="relative min-h-[96vh] flex flex-col justify-center overflow-hidden pt-28 pb-16">
       {/* Background Gradients & Grid */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 bg-[#090d12]" />
-        <div className="absolute inset-0 grid-pattern opacity-60" />
+        <div className="absolute inset-0 grid-pattern opacity-40" />
         <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px] animate-pulse-slow" />
         <div className="absolute top-1/3 -right-40 w-[550px] h-[550px] bg-sky-500/10 rounded-full blur-[130px] animate-pulse-slow animation-delay-300" />
         <div className="absolute -bottom-40 left-1/3 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[140px]" />
+      </div>
+
+      {/* Interactive 3D Canvas Background (Lazy Loaded) */}
+      <div className="absolute inset-0 pointer-events-none z-[1]">
+        <Suspense fallback={null}>
+          <HeroCanvas />
+        </Suspense>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -88,13 +100,13 @@ export const Hero = () => {
 
             {/* Main Headline */}
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.1] animate-fade-in animation-delay-100">
+              <h1 className="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.1] animate-fade-in animation-delay-100 font-heading">
                 Building <br />
                 <span className="gradient-text glow-text font-black">
                   Intelligent Web
                 </span>{" "}
                 <br />
-                <span className="font-serif italic font-normal text-slate-100">
+                <span className="italic font-light text-slate-100">
                   &amp; multi-agent systems.
                 </span>
               </h1>
@@ -184,9 +196,9 @@ export const Hero = () => {
 
           {/* Right Column: Interactive Code Terminal & Tech Box (5 cols) */}
           <div className="lg:col-span-5 animate-fade-in animation-delay-300">
-            <div className="relative mx-auto max-w-lg lg:max-w-none">
+            <TiltCard maxTilt={5} scale={1.01} className="relative mx-auto max-w-lg lg:max-w-none">
               {/* Outer Glow Effect */}
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-teal-500/30 via-sky-500/20 to-purple-500/30 blur-xl opacity-75 animate-pulse-slow" />
+              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-teal-500/30 via-sky-500/20 to-purple-500/30 blur-xl opacity-75 animate-pulse-slow pointer-events-none" />
 
               {/* Terminal Window Card */}
               <div className="relative glass-strong rounded-2xl border border-slate-700/80 shadow-2xl overflow-hidden">
@@ -326,7 +338,7 @@ export const Hero = () => {
               </div>
 
               {/* Floating Badges */}
-              <div className="absolute -bottom-5 -left-5 glass rounded-2xl p-3.5 border border-teal-500/40 shadow-xl hidden sm:flex items-center gap-3 animate-float">
+              <div className="absolute -bottom-5 -left-5 glass rounded-2xl p-3.5 border border-teal-500/40 shadow-xl hidden sm:flex items-center gap-3 animate-float pointer-events-none">
                 <div className="w-10 h-10 rounded-xl bg-teal-500/20 flex items-center justify-center text-teal-400 font-bold">
                   <Trophy className="w-5 h-5" />
                 </div>
@@ -336,7 +348,7 @@ export const Hero = () => {
                 </div>
               </div>
 
-              <div className="absolute -top-5 -right-5 glass rounded-2xl p-3.5 border border-sky-500/40 shadow-xl hidden sm:flex items-center gap-3 animate-float-reverse">
+              <div className="absolute -top-5 -right-5 glass rounded-2xl p-3.5 border border-sky-500/40 shadow-xl hidden sm:flex items-center gap-3 animate-float-reverse pointer-events-none">
                 <div className="w-10 h-10 rounded-xl bg-sky-500/20 flex items-center justify-center text-sky-400 font-bold">
                   <GraduationCap className="w-5 h-5" />
                 </div>
@@ -345,7 +357,7 @@ export const Hero = () => {
                   <div className="text-xs text-slate-400">B.Tech CSE • CGPA 7.47</div>
                 </div>
               </div>
-            </div>
+            </TiltCard>
           </div>
         </div>
 

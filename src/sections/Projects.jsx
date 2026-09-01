@@ -8,6 +8,7 @@ import {
   Zap,
 } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
+import { TiltCard } from "@/components/TiltCard";
 import { GithubIcon } from "@/components/Icons";
 
 const projectCategories = ["All", "Full-Stack", "AI & RL"];
@@ -110,9 +111,9 @@ export const Projects = () => {
             Featured Engineering Work
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-100 animate-fade-in animation-delay-100">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-100 animate-fade-in animation-delay-100 font-heading">
             Selected projects that{" "}
-            <span className="gradient-text glow-text font-serif italic font-normal">
+            <span className="gradient-text glow-text italic font-light">
               deliver measurable impact.
             </span>
           </h2>
@@ -142,8 +143,10 @@ export const Projects = () => {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {filteredProjects.map((project, idx) => (
-            <div
+            <TiltCard
               key={project.id}
+              maxTilt={4}
+              scale={1.01}
               className="group glass-card rounded-3xl overflow-hidden border border-slate-800/90 hover:border-teal-500/40 transition-all duration-500 flex flex-col justify-between"
               style={{ animationDelay: `${(idx + 1) * 100}ms` }}
             >
@@ -276,7 +279,7 @@ export const Projects = () => {
                   </a>
                 </div>
               </div>
-            </div>
+            </TiltCard>
           ))}
         </div>
 

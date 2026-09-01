@@ -10,40 +10,11 @@ import {
   Phone,
   MessageSquare,
   Globe,
+  Eye,
 } from "lucide-react";
 import { Button } from "@/components/Button";
+import { TiltCard } from "@/components/TiltCard";
 import emailjs from "@emailjs/browser";
-
-const contactChannels = [
-  {
-    icon: Mail,
-    label: "Email Address",
-    value: "24bcs019@iiitdwd.ac.in",
-    action: "mailto:24bcs019@iiitdwd.ac.in",
-    copyable: true,
-  },
-  {
-    icon: Phone,
-    label: "Phone / WhatsApp",
-    value: "+91-9336852798",
-    action: "tel:+919336852798",
-    copyable: true,
-  },
-  {
-    icon: MapPin,
-    label: "Current Location",
-    value: "IIIT Dharwad, Karnataka, India",
-    action: "#",
-    copyable: false,
-  },
-  {
-    icon: Globe,
-    label: "Hugging Face Space",
-    value: "huggingface.co/Anurag137",
-    action: "https://huggingface.co/Anurag137",
-    copyable: false,
-  },
-];
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -58,6 +29,54 @@ export const Contact = () => {
     message: "",
   });
   const [copiedItem, setCopiedItem] = useState("");
+  const [isPhoneRevealed, setIsPhoneRevealed] = useState(false);
+
+  // Scrape-protected dynamic values constructed at runtime
+  const emailUser = "24bcs019";
+  const emailDomain = "iiitdwd.ac.in";
+  const rawEmail = `${emailUser}@${emailDomain}`;
+
+  const phoneCode = "+91";
+  const phonePart1 = "93368";
+  const phonePart2 = "52798";
+  const rawPhone = `${phoneCode}-${phonePart1}${phonePart2}`;
+  const whatsappLink = `https://wa.me/91${phonePart1}${phonePart2}`;
+
+  const contactChannels = [
+    {
+      icon: Mail,
+      label: "Email Address",
+      value: rawEmail,
+      action: `mailto:${rawEmail}`,
+      copyable: true,
+      isRevealed: true,
+    },
+    {
+      icon: Phone,
+      label: "Phone / WhatsApp",
+      value: isPhoneRevealed ? rawPhone : `${phoneCode} ${phonePart1} •••••`,
+      action: isPhoneRevealed ? `tel:${phoneCode}${phonePart1}${phonePart2}` : undefined,
+      whatsappAction: whatsappLink,
+      copyable: isPhoneRevealed,
+      isPhone: true,
+    },
+    {
+      icon: MapPin,
+      label: "Current Location",
+      value: "IIIT Dharwad, Karnataka, India",
+      action: "#",
+      copyable: false,
+      isRevealed: true,
+    },
+    {
+      icon: Globe,
+      label: "Hugging Face Space",
+      value: "huggingface.co/Anurag137",
+      action: "https://huggingface.co/Anurag137",
+      copyable: false,
+      isRevealed: true,
+    },
+  ];
 
   const handleCopy = (text, label) => {
     navigator.clipboard.writeText(text);
@@ -108,8 +127,7 @@ export const Contact = () => {
       // Fallback message encouraging direct mail
       setSubmitStatus({
         type: "error",
-        message:
-          "Unable to send via automated dispatch. Please email me directly at 24bcs019@iiitdwd.ac.in!",
+        message: `Unable to send via automated dispatch. Please email me directly at ${rawEmail}!`,
       });
     } finally {
       setIsLoading(false);
@@ -130,9 +148,9 @@ export const Contact = () => {
             Let's Connect
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-100 animate-fade-in animation-delay-100">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-100 animate-fade-in animation-delay-100 font-heading">
             Have a project or opportunity?{" "}
-            <span className="gradient-text glow-text font-serif italic font-normal">
+            <span className="gradient-text glow-text italic font-light">
               Let's build together.
             </span>
           </h2>
@@ -145,24 +163,65 @@ export const Contact = () => {
         {/* Contact Form & Channel Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto">
           {/* Left Column: Form (7 cols) */}
-          <div className="lg:col-span-7 glass-card rounded-3xl p-8 sm:p-10 border border-slate-800/90 shadow-2xl">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="lg:col-span-7">
+            <TiltCard maxTilt={3} scale={1.005} className="glass-card rounded-3xl p-8 sm:p-10 border border-slate-800/90 shadow-2xl">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      htmlFor="contact-name"
+                      className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2 font-semibold"
+                    >
+                      Your Name *
+                    </label>
+                    <input
+                      id="contact-name"
+                      type="text"
+                      required
+                      placeholder="e.g. Alex Morgan"
+                      value={formData.name}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
+                      className="w-full px-4 py-3 bg-slate-900/90 rounded-xl border border-slate-800 text-slate-100 text-sm focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none transition-all placeholder:text-slate-600"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="contact-email"
+                      className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2 font-semibold"
+                    >
+                      Email Address *
+                    </label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      required
+                      placeholder="alex@company.com"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                      className="w-full px-4 py-3 bg-slate-900/90 rounded-xl border border-slate-800 text-slate-100 text-sm focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none transition-all placeholder:text-slate-600"
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label
-                    htmlFor="contact-name"
+                    htmlFor="contact-subject"
                     className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2 font-semibold"
                   >
-                    Your Name *
+                    Topic / Project Scope
                   </label>
                   <input
-                    id="contact-name"
+                    id="contact-subject"
                     type="text"
-                    required
-                    placeholder="e.g. Alex Morgan"
-                    value={formData.name}
+                    placeholder="e.g. Full-Stack Web App / Technical Advisory"
+                    value={formData.subject}
                     onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
+                      setFormData({ ...formData, subject: e.target.value })
                     }
                     className="w-full px-4 py-3 bg-slate-900/90 rounded-xl border border-slate-800 text-slate-100 text-sm focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none transition-all placeholder:text-slate-600"
                   />
@@ -170,107 +229,68 @@ export const Contact = () => {
 
                 <div>
                   <label
-                    htmlFor="contact-email"
+                    htmlFor="contact-message"
                     className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2 font-semibold"
                   >
-                    Email Address *
+                    Message &amp; Timeline *
                   </label>
-                  <input
-                    id="contact-email"
-                    type="email"
+                  <textarea
+                    id="contact-message"
+                    rows={5}
                     required
-                    placeholder="alex@company.com"
-                    value={formData.email}
+                    placeholder="Tell me about your goals, current architecture, timeline, and how I can help..."
+                    value={formData.message}
                     onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
+                      setFormData({ ...formData, message: e.target.value })
                     }
-                    className="w-full px-4 py-3 bg-slate-900/90 rounded-xl border border-slate-800 text-slate-100 text-sm focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none transition-all placeholder:text-slate-600"
+                    className="w-full px-4 py-3 bg-slate-900/90 rounded-xl border border-slate-800 text-slate-100 text-sm focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none transition-all resize-none placeholder:text-slate-600"
                   />
                 </div>
-              </div>
 
-              <div>
-                <label
-                  htmlFor="contact-subject"
-                  className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2 font-semibold"
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={isLoading}
+                  className="w-full py-4 text-base font-bold shadow-lg shadow-teal-500/20"
                 >
-                  Topic / Project Scope
-                </label>
-                <input
-                  id="contact-subject"
-                  type="text"
-                  placeholder="e.g. Full-Stack Web App / Technical Advisory"
-                  value={formData.subject}
-                  onChange={(e) =>
-                    setFormData({ ...formData, subject: e.target.value })
-                  }
-                  className="w-full px-4 py-3 bg-slate-900/90 rounded-xl border border-slate-800 text-slate-100 text-sm focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none transition-all placeholder:text-slate-600"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="contact-message"
-                  className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2 font-semibold"
-                >
-                  Message &amp; Timeline *
-                </label>
-                <textarea
-                  id="contact-message"
-                  rows={5}
-                  required
-                  placeholder="Tell me about your goals, current architecture, timeline, and how I can help..."
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                  className="w-full px-4 py-3 bg-slate-900/90 rounded-xl border border-slate-800 text-slate-100 text-sm focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none transition-all resize-none placeholder:text-slate-600"
-                />
-              </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                disabled={isLoading}
-                className="w-full py-4 text-base font-bold shadow-lg shadow-teal-500/20"
-              >
-                {isLoading ? (
-                  <span className="flex items-center gap-2">
-                    <span className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
-                    Transmitting Message...
-                  </span>
-                ) : (
-                  <span className="flex items-center gap-2">
-                    Send Message
-                    <Send className="w-4 h-4 ml-1" />
-                  </span>
-                )}
-              </Button>
-
-              {/* Status Alert Banner */}
-              {submitStatus.type && (
-                <div
-                  className={`p-4 rounded-2xl flex items-start gap-3 text-sm animate-fade-in ${
-                    submitStatus.type === "success"
-                      ? "bg-emerald-950/40 border border-emerald-500/40 text-emerald-300"
-                      : "bg-rose-950/40 border border-rose-500/40 text-rose-300"
-                  }`}
-                >
-                  {submitStatus.type === "success" ? (
-                    <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5 text-emerald-400" />
+                  {isLoading ? (
+                    <span className="flex items-center gap-2">
+                      <span className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
+                      Transmitting Message...
+                    </span>
                   ) : (
-                    <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5 text-rose-400" />
+                    <span className="flex items-center gap-2">
+                      Send Message
+                      <Send className="w-4 h-4 ml-1" />
+                    </span>
                   )}
-                  <p className="leading-relaxed">{submitStatus.message}</p>
-                </div>
-              )}
-            </form>
+                </Button>
+
+                {/* Status Alert Banner */}
+                {submitStatus.type && (
+                  <div
+                    className={`p-4 rounded-2xl flex items-start gap-3 text-sm animate-fade-in ${
+                      submitStatus.type === "success"
+                        ? "bg-emerald-950/40 border border-emerald-500/40 text-emerald-300"
+                        : "bg-rose-950/40 border border-rose-500/40 text-rose-300"
+                    }`}
+                  >
+                    {submitStatus.type === "success" ? (
+                      <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5 text-emerald-400" />
+                    ) : (
+                      <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5 text-rose-400" />
+                    )}
+                    <p className="leading-relaxed">{submitStatus.message}</p>
+                  </div>
+                )}
+              </form>
+            </TiltCard>
           </div>
 
           {/* Right Column: Channels & Availability (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             {/* Availability Banner */}
-            <div className="glass-card rounded-3xl p-6 border border-teal-500/30 bg-teal-950/20">
+            <TiltCard maxTilt={3} scale={1.01} className="glass-card rounded-3xl p-6 border border-teal-500/30 bg-teal-950/20">
               <div className="flex items-center gap-3 mb-2">
                 <span className="relative flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
@@ -283,7 +303,7 @@ export const Contact = () => {
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                 Open for Software Development Engineer (SDE) internships, Full-Stack development roles, hackathons, and AI / Multi-Agent RL research projects.
               </p>
-            </div>
+            </TiltCard>
 
             {/* Direct Channels */}
             <div className="glass-card rounded-3xl p-6 sm:p-8 space-y-4 border border-slate-800/90">
@@ -305,30 +325,61 @@ export const Contact = () => {
                         <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider">
                           {item.label}
                         </div>
-                        <a
-                          href={item.action}
-                          target={item.action.startsWith("http") ? "_blank" : undefined}
-                          rel="noreferrer"
-                          className="text-xs sm:text-sm font-semibold text-slate-200 hover:text-teal-300 transition-colors truncate block"
-                        >
-                          {item.value}
-                        </a>
+                        {item.action ? (
+                          <a
+                            href={item.action}
+                            target={item.action.startsWith("http") ? "_blank" : undefined}
+                            rel="noreferrer"
+                            className="text-xs sm:text-sm font-semibold text-slate-200 hover:text-teal-300 transition-colors truncate block"
+                          >
+                            {item.value}
+                          </a>
+                        ) : (
+                          <span className="text-xs sm:text-sm font-semibold text-slate-300 block font-mono">
+                            {item.value}
+                          </span>
+                        )}
                       </div>
                     </div>
 
-                    {item.copyable && (
-                      <button
-                        onClick={() => handleCopy(item.value, item.label)}
-                        className="p-2 rounded-lg glass hover:bg-slate-800 text-slate-400 hover:text-teal-300 transition-colors flex-shrink-0"
-                        title="Copy to clipboard"
-                      >
-                        {copiedItem === item.label ? (
-                          <Check className="w-4 h-4 text-teal-400" />
-                        ) : (
-                          <Copy className="w-4 h-4" />
-                        )}
-                      </button>
-                    )}
+                    <div className="flex items-center gap-1.5 flex-shrink-0">
+                      {item.isPhone && !isPhoneRevealed && (
+                        <button
+                          onClick={() => setIsPhoneRevealed(true)}
+                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-teal-500/10 border border-teal-500/30 text-teal-300 hover:bg-teal-500 hover:text-slate-950 text-xs font-semibold transition-all"
+                          title="Click to reveal phone number"
+                        >
+                          <Eye className="w-3.5 h-3.5" />
+                          <span>Reveal</span>
+                        </button>
+                      )}
+
+                      {item.isPhone && isPhoneRevealed && (
+                        <a
+                          href={item.whatsappAction}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500 hover:text-slate-950 text-xs font-bold transition-all"
+                          title="Chat on WhatsApp"
+                        >
+                          WhatsApp
+                        </a>
+                      )}
+
+                      {item.copyable && (
+                        <button
+                          onClick={() => handleCopy(item.value, item.label)}
+                          className="p-2 rounded-lg glass hover:bg-slate-800 text-slate-400 hover:text-teal-300 transition-colors"
+                          title="Copy to clipboard"
+                        >
+                          {copiedItem === item.label ? (
+                            <Check className="w-4 h-4 text-teal-400" />
+                          ) : (
+                            <Copy className="w-4 h-4" />
+                          )}
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>

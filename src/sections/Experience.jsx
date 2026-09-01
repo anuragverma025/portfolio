@@ -5,6 +5,7 @@ import {
   GraduationCap,
   CheckCircle2,
 } from "lucide-react";
+import { TiltCard } from "@/components/TiltCard";
 
 const experiences = [
   {
@@ -92,9 +93,9 @@ export const Experience = () => {
             Leadership &amp; Experience
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-100 animate-fade-in animation-delay-100">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-100 animate-fade-in animation-delay-100 font-heading">
             Technical leadership &amp;{" "}
-            <span className="gradient-text glow-text font-serif italic font-normal">
+            <span className="gradient-text glow-text italic font-light">
               hands-on development.
             </span>
           </h2>
@@ -133,7 +134,11 @@ export const Experience = () => {
                         : "md:col-start-2 md:pl-12"
                     }`}
                   >
-                    <div className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800/90 hover:border-teal-500/40 transition-all duration-300 group">
+                    <TiltCard
+                      maxTilt={4}
+                      scale={1.01}
+                      className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800/90 hover:border-teal-500/40 transition-all duration-300 group"
+                    >
                       {/* Top Row: Period & Tag */}
                       <div
                         className={`flex flex-wrap items-center gap-3 mb-3 ${
@@ -193,7 +198,7 @@ export const Experience = () => {
                           </span>
                         ))}
                       </div>
-                    </div>
+                    </TiltCard>
                   </div>
                 </div>
               );
@@ -219,8 +224,10 @@ export const Experience = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {educationAndCerts.map((item, idx) => (
-              <div
+              <TiltCard
                 key={idx}
+                maxTilt={5}
+                scale={1.02}
                 className="glass p-5 rounded-2xl border border-slate-800/80 hover:border-teal-500/40 transition-colors"
               >
                 <div className="flex items-center justify-between text-xs text-teal-400 font-mono mb-2">
@@ -230,7 +237,7 @@ export const Experience = () => {
                 <h4 className="text-sm font-bold text-slate-100">{item.title}</h4>
                 <p className="text-xs text-slate-300 font-medium mt-1">{item.institution}</p>
                 <p className="text-[11px] text-slate-400 mt-2 leading-relaxed">{item.note}</p>
-              </div>
+              </TiltCard>
             ))}
           </div>
         </div>

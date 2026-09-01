@@ -5,11 +5,13 @@ import {
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon, HuggingFaceIcon } from "@/components/Icons";
 
+const getEmail = () => ["24bcs019", "iiitdwd.ac.in"].join("@");
+
 const socialLinks = [
   { icon: GithubIcon, href: "https://github.com/anuragverma025", label: "GitHub" },
   { icon: LinkedinIcon, href: "https://linkedin.com/in/anurag-verma025", label: "LinkedIn" },
   { icon: HuggingFaceIcon, href: "https://huggingface.co/Anurag137", label: "Hugging Face" },
-  { icon: Mail, href: "mailto:24bcs019@iiitdwd.ac.in", label: "Email" },
+  { icon: Mail, getHref: () => `mailto:${getEmail()}`, label: "Email" },
 ];
 
 const footerLinks = [
@@ -68,8 +70,8 @@ export const Footer = () => {
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
-                  href={social.href}
-                  target="_blank"
+                  href={social.getHref ? social.getHref() : social.href}
+                  target={social.label === "Email" ? undefined : "_blank"}
                   rel="noreferrer"
                   aria-label={social.label}
                   className="p-2.5 rounded-full glass hover:bg-teal-500/20 hover:text-teal-300 hover:border-teal-500/40 transition-all text-slate-400"

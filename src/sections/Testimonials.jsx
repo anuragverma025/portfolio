@@ -11,6 +11,7 @@ import {
   ExternalLink,
   Medal,
 } from "lucide-react";
+import { TiltCard } from "@/components/TiltCard";
 import { GithubIcon } from "@/components/Icons";
 
 const achievements = [
@@ -138,9 +139,9 @@ export const Testimonials = () => {
             Hackathons &amp; Honors
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-100 animate-fade-in animation-delay-100">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-100 animate-fade-in animation-delay-100 font-heading">
             Achievements &amp;{" "}
-            <span className="gradient-text glow-text font-serif italic font-normal">
+            <span className="gradient-text glow-text italic font-light">
               community impact.
             </span>
           </h2>
@@ -153,8 +154,10 @@ export const Testimonials = () => {
         {/* 3 Main Achievements Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {achievements.map((item, idx) => (
-            <div
+            <TiltCard
               key={idx}
+              maxTilt={4}
+              scale={1.01}
               className={`glass-card rounded-3xl p-7 border ${item.border} hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between relative overflow-hidden group`}
             >
               <div className={`absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br ${item.color} rounded-full blur-2xl pointer-events-none`} />
@@ -226,13 +229,13 @@ export const Testimonials = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </TiltCard>
           ))}
         </div>
 
         {/* Testimonials Carousel Container */}
         <div className="max-w-4xl mx-auto">
-          <div className="relative glass-card rounded-3xl p-8 sm:p-12 border border-slate-800/90 shadow-2xl transition-all duration-500">
+          <TiltCard maxTilt={3} scale={1.005} className="relative glass-card rounded-3xl p-8 sm:p-12 border border-slate-800/90 shadow-2xl transition-all duration-500">
             {/* Top quote icon */}
             <div className="flex items-center justify-between mb-6">
               <div className="w-12 h-12 rounded-2xl bg-teal-500/20 border border-teal-500/30 flex items-center justify-center text-teal-300">
@@ -318,7 +321,7 @@ export const Testimonials = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </TiltCard>
         </div>
       </div>
     </section>
