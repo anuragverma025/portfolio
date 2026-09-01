@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" fill="none">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0f18"/>
+      <stop offset="50%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#080c14"/>
+    </linearGradient>
+    <linearGradient id="purpleGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="cyanGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <filter id="shadow3" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  
+  <rect width="1200" height="750" fill="url(#bg3)"/>
+  <circle cx="900" cy="200" r="220" fill="#8b5cf6" opacity="0.12" filter="blur(60px)"/>
+  <circle cx="250" cy="550" r="180" fill="#06b6d4" opacity="0.1" filter="blur(50px)"/>
+  
+  <g filter="url(#shadow3)">
+    <rect x="80" y="60" width="1040" height="630" rx="16" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+    
+    <!-- Window Header -->
+    <rect x="80" y="60" width="1040" height="48" rx="16" fill="#090d16"/>
+    <circle cx="115" cy="84" r="6" fill="#ef4444"/>
+    <circle cx="135" cy="84" r="6" fill="#f59e0b"/>
+    <circle cx="155" cy="84" r="6" fill="#10b981"/>
+    
+    <rect x="420" y="72" width="360" height="24" rx="6" fill="#1e293b"/>
+    <text x="600" y="88" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11" text-anchor="middle">ai-copilot.agentic.workspace/v2</text>
+    
+    <!-- Left Workspace (Prompt / Code Generation) -->
+    <g transform="translate(110, 130)">
+      <rect x="0" y="0" width="580" height="520" rx="12" fill="#0b1120" stroke="#1e293b" stroke-width="1"/>
+      
+      <!-- Tab Bar -->
+      <rect x="0" y="0" width="580" height="40" rx="12" fill="#0f172a"/>
+      <rect x="15" y="8" width="120" height="26" rx="6" fill="#1e293b"/>
+      <text x="75" y="25" fill="#38bdf8" font-family="monospace" font-size="12" text-anchor="middle">agent_runner.py</text>
+      
+      <!-- Code lines -->
+      <g transform="translate(20, 60)" font-family="monospace" font-size="12">
+        <text y="0" fill="#64748b">1</text> <text x="30" y="0" fill="#c084fc">import</text> <text x="80" y="0" fill="#f8fafc">asyncio, openai, vector_store</text>
+        <text y="24" fill="#64748b">2</text>
+        <text y="48" fill="#64748b">3</text> <text x="30" y="48" fill="#c084fc">class</text> <text x="75" y="48" fill="#38bdf8">AutonomousAgentEngine</text><text x="240" y="48" fill="#f8fafc">:</text>
+        <text y="72" fill="#64748b">4</text> <text x="50" y="72" fill="#94a3b8">"""Self-healing LLM pipeline with RAG reasoning"""</text>
+        <text y="96" fill="#64748b">5</text> <text x="50" y="96" fill="#c084fc">async def</text> <text x="125" y="96" fill="#4ade80">execute_multi_step_plan</text><text x="305" y="96" fill="#f8fafc">(self, query):</text>
+        <text y="120" fill="#64748b">6</text> <text x="75" y="120" fill="#f8fafc">ctx = </text><text x="120" y="120" fill="#c084fc">await</text><text x="165" y="120" fill="#f8fafc"> self.retriever.query(query, k=10)</text>
+        <text y="144" fill="#64748b">7</text> <text x="75" y="144" fill="#f8fafc">plan = </text><text x="128" y="144" fill="#c084fc">await</text><text x="175" y="144" fill="#f8fafc"> self.llm.synthesize(ctx, stream=</text><text x="440" y="144" fill="#f59e0b">True</text><text x="475" y="144" fill="#f8fafc">)</text>
+        <text y="168" fill="#64748b">8</text> <text x="75" y="168" fill="#c084fc">return</text><text x="130" y="168" fill="#f8fafc"> self.validator.verify(plan)</text>
+      </g>
+      
+      <!-- Interactive Terminal Output inside Left Workspace -->
+      <g transform="translate(15, 270)">
+        <rect x="0" y="0" width="550" height="230" rx="8" fill="#070a12" stroke="#1e293b" stroke-width="1"/>
+        <text x="15" y="25" fill="#2dd4bf" font-family="monospace" font-size="11">✓ Vector embeddings indexed (148,920 chunks)</text>
+        <text x="15" y="50" fill="#a855f7" font-family="monospace" font-size="11">⚡ Running Reasoning Loop (Step 3/3)... Complete.</text>
+        <text x="15" y="75" fill="#38bdf8" font-family="monospace" font-size="11">→ Streaming output with 0.12s latency @ 92 tokens/sec</text>
+        
+        <rect x="15" y="95" width="520" height="115" rx="6" fill="#0f172a"/>
+        <text x="30" y="125" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Generated Synthesis:</text>
+        <text x="30" y="150" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">"Architectural refactor complete: Scaled microservices to 10k RPS</text>
+        <text x="30" y="172" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">with automatic failover and sub-millisecond cache hits."</text>
+      </g>
+    </g>
+    
+    <!-- Right Panel (Agent Nodes & Metrics) -->
+    <g transform="translate(710, 130)">
+      <rect x="0" y="0" width="370" height="520" rx="12" fill="#0b1120" stroke="#1e293b" stroke-width="1"/>
+      
+      <text x="25" y="38" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="16" font-weight="bold">Live Agent Orchestration</text>
+      <text x="25" y="60" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Autonomous Sub-Agent Graph</text>
+      
+      <!-- Node 1 -->
+      <g transform="translate(25, 85)">
+        <rect x="0" y="0" width="320" height="70" rx="10" fill="#131d33" stroke="#2563eb" stroke-width="1"/>
+        <circle cx="25" cy="35" r="10" fill="#3b82f6"/>
+        <text x="45" y="30" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Research &amp; Ingestion Subagent</text>
+        <text x="45" y="50" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="11">Status: Active • 1,420 docs scanned</text>
+      </g>
+      
+      <!-- Node 2 -->
+      <g transform="translate(25, 175)">
+        <rect x="0" y="0" width="320" height="70" rx="10" fill="#131d33" stroke="#8b5cf6" stroke-width="1"/>
+        <circle cx="25" cy="35" r="10" fill="#a855f7"/>
+        <text x="45" y="30" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Context Reasoning &amp; Code Gen</text>
+        <text x="45" y="50" fill="#c084fc" font-family="system-ui, sans-serif" font-size="11">Status: Generating AST diffs</text>
+      </g>
+      
+      <!-- Node 3 -->
+      <g transform="translate(25, 265)">
+        <rect x="0" y="0" width="320" height="70" rx="10" fill="#131d33" stroke="#10b981" stroke-width="1"/>
+        <circle cx="25" cy="35" r="10" fill="#10b981"/>
+        <text x="45" y="30" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Verification &amp; Linter Guardrail</text>
+        <text x="45" y="50" fill="#34d399" font-family="system-ui, sans-serif" font-size="11">100% Pass • 0 Security alerts</text>
+      </g>
+      
+      <!-- Metrics Card -->
+      <g transform="translate(25, 360)">
+        <rect x="0" y="0" width="320" height="135" rx="10" fill="#0e172a" stroke="#1e293b" stroke-width="1"/>
+        <text x="20" y="28" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12" font-weight="600">PERFORMANCE METRICS</text>
+        <text x="20" y="60" fill="#ffffff" font-family="system-ui, sans-serif" font-size="22" font-weight="bold">99.8% Accuracy</text>
+        <text x="20" y="85" fill="#2dd4bf" font-family="system-ui, sans-serif" font-size="12">Avg Response Time: 140ms</text>
+        <text x="20" y="108" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">Supports GPT-4o, Claude 3.5, Gemini 2.0</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" fill="none">
+  <defs>
+    <radialGradient id="hbg" cx="50%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#0f1c2b"/>
+      <stop offset="40%" stop-color="#0b131d"/>
+      <stop offset="100%" stop-color="#070a0f"/>
+    </radialGradient>
+    <radialGradient id="tealCenter" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#14b8a6" stop-opacity="0.18"/>
+      <stop offset="50%" stop-color="#0284c7" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#070a0f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gridGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#14b8a6" stop-opacity="0.25"/>
+      <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#070a0f" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#hbg)"/>
+  <rect width="1920" height="1080" fill="url(#tealCenter)"/>
+
+  <!-- Perspective 3D Grid on ground -->
+  <g opacity="0.6" stroke="url(#gridGrad)" stroke-width="1">
+    <line x1="960" y1="350" x2="-200" y2="1080"/>
+    <line x1="960" y1="350" x2="100" y2="1080"/>
+    <line x1="960" y1="350" x2="400" y2="1080"/>
+    <line x1="960" y1="350" x2="700" y2="1080"/>
+    <line x1="960" y1="350" x2="960" y2="1080"/>
+    <line x1="960" y1="350" x2="1220" y2="1080"/>
+    <line x1="960" y1="350" x2="1520" y2="1080"/>
+    <line x1="960" y1="350" x2="1820" y2="1080"/>
+    <line x1="960" y1="350" x2="2120" y2="1080"/>
+
+    <line x1="0" y1="420" x2="1920" y2="420" stroke-opacity="0.1"/>
+    <line x1="0" y1="490" x2="1920" y2="490" stroke-opacity="0.15"/>
+    <line x1="0" y1="580" x2="1920" y2="580" stroke-opacity="0.25"/>
+    <line x1="0" y1="700" x2="1920" y2="700" stroke-opacity="0.35"/>
+    <line x1="0" y1="860" x2="1920" y2="860" stroke-opacity="0.45"/>
+    <line x1="0" y1="1060" x2="1920" y2="1060" stroke-opacity="0.55"/>
+  </g>
+
+  <!-- Luminous glow orbs -->
+  <circle cx="200" cy="200" r="350" fill="#14b8a6" opacity="0.12"/>
+  <circle cx="1700" cy="400" r="400" fill="#38bdf8" opacity="0.1"/>
+  <circle cx="960" cy="150" r="250" fill="#818cf8" opacity="0.08"/>
+</svg>

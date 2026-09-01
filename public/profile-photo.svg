@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" fill="none">
+  <defs>
+    <linearGradient id="avatarBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0e1724"/>
+      <stop offset="50%" stop-color="#142336"/>
+      <stop offset="100%" stop-color="#0b1017"/>
+    </linearGradient>
+    <linearGradient id="glowRing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="50%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+    <linearGradient id="torsoGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="faceGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fbcfe8"/>
+      <stop offset="50%" stop-color="#fde047" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#fed7aa"/>
+    </linearGradient>
+    <filter id="neon" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="20" flood-color="#14b8a6" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="1000" rx="32" fill="url(#avatarBg)"/>
+  
+  <!-- Cyber matrix lines / circles -->
+  <circle cx="400" cy="450" r="280" stroke="url(#glowRing)" stroke-width="1.5" stroke-dasharray="8 12" opacity="0.35"/>
+  <circle cx="400" cy="450" r="340" stroke="#38bdf8" stroke-width="1" stroke-dasharray="4 16" opacity="0.2"/>
+  <circle cx="400" cy="450" r="220" fill="#14b8a6" opacity="0.08"/>
+
+  <!-- Code bracket watermark in background -->
+  <text x="180" y="320" fill="#1e2d42" font-family="monospace" font-size="160" font-weight="bold" opacity="0.3">&lt;</text>
+  <text x="520" y="320" fill="#1e2d42" font-family="monospace" font-size="160" font-weight="bold" opacity="0.3">&gt;</text>
+  
+  <!-- Ambient floating particles -->
+  <circle cx="220" cy="220" r="4" fill="#2dd4bf" opacity="0.8"/>
+  <circle cx="600" cy="260" r="5" fill="#38bdf8" opacity="0.7"/>
+  <circle cx="640" cy="620" r="4" fill="#f59e0b" opacity="0.7"/>
+  <circle cx="180" cy="680" r="3" fill="#818cf8" opacity="0.8"/>
+
+  <!-- Stylish Stylized Silhouette Portrait of Software Engineer -->
+  <g filter="url(#neon)">
+    <!-- Shoulders & Hoodie -->
+    <path d="M 220 900 C 220 740 280 660 350 630 L 450 630 C 520 660 580 740 580 900 Z" fill="url(#torsoGrad)" stroke="#334155" stroke-width="2"/>
+    <path d="M 330 635 L 400 780 L 470 635 Z" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+    
+    <!-- Neck -->
+    <rect x="375" y="520" width="50" height="120" rx="10" fill="#e2e8f0" opacity="0.9"/>
+    
+    <!-- Head Base / Face -->
+    <path d="M 320 380 C 320 270 480 270 480 380 C 480 480 430 550 400 550 C 370 550 320 480 320 380 Z" fill="#f1f5f9"/>
+    
+    <!-- Modern Tech Glasses / Visor -->
+    <rect x="335" y="380" width="55" height="32" rx="8" fill="#0b1320" stroke="#2dd4bf" stroke-width="2.5"/>
+    <rect x="410" y="380" width="55" height="32" rx="8" fill="#0b1320" stroke="#2dd4bf" stroke-width="2.5"/>
+    <line x1="390" y1="396" x2="410" y2="396" stroke="#2dd4bf" stroke-width="3"/>
+    
+    <!-- Visor Reflection -->
+    <path d="M 345 388 L 375 388 L 355 404 L 340 404 Z" fill="#38bdf8" opacity="0.7"/>
+    <path d="M 420 388 L 450 388 L 430 404 L 415 404 Z" fill="#38bdf8" opacity="0.7"/>
+    
+    <!-- Sleek Hair / Contour -->
+    <path d="M 305 380 C 305 240 495 230 495 380 C 495 340 470 300 400 300 C 340 300 310 335 305 380 Z" fill="#0f172a"/>
+    <path d="M 330 265 C 380 240 450 250 485 290 C 440 270 370 270 330 265 Z" fill="#2dd4bf" opacity="0.8"/>
+    
+    <!-- Headphones -->
+    <rect x="290" y="360" width="22" height="70" rx="11" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+    <rect x="488" y="360" width="22" height="70" rx="11" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+    <path d="M 300 365 C 300 220 500 220 500 365" fill="none" stroke="#1e293b" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <!-- Bottom Floating Tech Chip -->
+  <g transform="translate(180, 840)">
+    <rect x="0" y="0" width="440" height="72" rx="16" fill="#0c1622" stroke="#1e3a5f" stroke-width="1.5"/>
+    <circle cx="45" cy="36" r="14" fill="#14b8a6"/>
+    <text x="45" y="42" fill="#ffffff" font-family="monospace" font-size="14" font-weight="bold" text-anchor="middle">&lt;/&gt;</text>
+    <text x="75" y="32" fill="#f0f6fc" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Pedro Machado</text>
+    <text x="75" y="52" fill="#2dd4bf" font-family="system-ui, sans-serif" font-size="12">Senior Software Engineer • React / Next.js</text>
+    
+    <rect x="340" y="24" width="75" height="24" rx="6" fill="#14b8a6" opacity="0.2"/>
+    <text x="377" y="40" fill="#2dd4bf" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle">ONLINE</text>
+  </g>
+</svg>

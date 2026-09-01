@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" fill="none">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0f18"/>
+      <stop offset="50%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#080c14"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg3)"/>
+  <rect x="80" y="60" width="1040" height="630" rx="16" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+  <rect x="80" y="60" width="1040" height="48" rx="16" fill="#090d16"/>
+  <circle cx="115" cy="84" r="6" fill="#ef4444"/>
+  <circle cx="135" cy="84" r="6" fill="#f59e0b"/>
+  <circle cx="155" cy="84" r="6" fill="#10b981"/>
+  <rect x="420" y="72" width="360" height="24" rx="6" fill="#1e293b"/>
+  <text x="600" y="88" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11" text-anchor="middle">ai-copilot.agentic.workspace/v2</text>
+  <g transform="translate(120, 140)">
+    <text x="0" y="40" fill="#38bdf8" font-family="monospace" font-size="20">class AutonomousAgentEngine:</text>
+    <text x="40" y="80" fill="#94a3b8" font-family="monospace" font-size="16">"""Self-healing LLM pipeline with RAG reasoning"""</text>
+    <text x="40" y="120" fill="#c084fc" font-family="monospace" font-size="16">async def execute_multi_step_plan(self, query):</text>
+    <text x="80" y="160" fill="#4ade80" font-family="monospace" font-size="16">ctx = await self.retriever.query(query, k=10)</text>
+    <text x="80" y="200" fill="#f8fafc" font-family="monospace" font-size="16">return self.llm.synthesize(ctx, stream=True)</text>
+  </g>
+</svg>
